@@ -16,7 +16,7 @@
         <init-param>
             <param-name>user</param-name>
             <param-value>postgres</param-value>
-        </init-param>
+     </init-param>
         <init-param>
             <param-name>password</param-name>
             <param-value>secret</param-value>
@@ -25,6 +25,18 @@
     <servlet>
         <servlet-name>DetailsClient</servlet-name>
         <servlet-class>fr.laerce.facturation.DetailsClient</servlet-class>
+        <init-param>
+            <param-name>driver</param-name>
+            <param-value>jdbc:postgresql://192.168.99.100/exemple</param-value>
+        </init-param>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>postgres</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>secret</param-value>
+        </init-param>
 
     </servlet>
 
@@ -36,6 +48,6 @@
         <servlet-name>DetailsClient</servlet-name>
         <url-pattern>/DetailsClient</url-pattern>
     </servlet-mapping>
-    
+
 
 </web-app>

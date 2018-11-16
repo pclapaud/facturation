@@ -10,17 +10,22 @@
 <p />
 <hr width="100%" />
 
+<form method="post" action="/DetailsClient">
 <table border="1" >
     <tr><th>Nom</th><th>Prénom</th><th>Ville</th><th>Pays</th></tr>
 
         <tr>
-            <td> ${client.nom} </td>
-            <td> ${client.pnom} </td>
-            <td> ${client.loc} </td>
-            <td> ${client.pays} </td>
+            <td> <label for="nom"></label> <input id="nom" name="nom" type = text value="${client.nom}"> </td>
+            <td> <label for="prenom"></label> <input id="prenom" name="prenom" type = text value="${client.pnom}"> </td>
+            <td> <label for="loc"></label> <input id="loc" name="loc" type = text value="${client.loc}"> </td>
+            <td> <label for="pays"></label> <input id="pays"name="pays" type = text value="${client.pays}"> </td>
         </tr>
 
+
+
+<INPUT type="submit">
 </table>
+</form>
 
 </body>
 </html>

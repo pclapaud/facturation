@@ -44,7 +44,29 @@ public class ListeClients extends HttpServlet {
             e.printStackTrace();
         }
     }
+    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        HttpSession session = httpServletRequest.getSession();
+        try {
+            String numString = null;
+            Statement req = conn.createStatement();
+            String query = "SELECT MAX(clt_num)FROM clients";
+            ResultSet res = req.executeQuery(query);
+            while(res.next()) {
+                Integer num = Integer.parseInt(res.getString(1).substring(1).trim()) + 1;
+                numString = "C" + num;
+            }
+            
+            String name = httpServletRequest.getParameter("nom");
+            String prenom = httpServletRequest.getParameter("prenom");
+            String loc = httpServletRequest.getParameter("loc");
+            String pays = httpServletRequest.getParameter("pays");
+            String reqe = "INSERT INTO clients VALUES ('"+numString+"','"+name+"', '"+prenom+"', '"+pays+"',' "+loc+"',0,'particulier')";
+            req.executeUpdate(reqe);
 
+            httpServletResponse.sendRedirect("/clients.html");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }}
     @Override
     public void init() throws ServletException {
         super.init();
