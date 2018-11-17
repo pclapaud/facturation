@@ -83,19 +83,11 @@ public class ListeClients extends HttpServlet {
 //            props.setProperty("password", password);
 //            conn = DriverManager.getConnection(driver, props);
             Context ctx = new InitialContext();
-            if(ctx == null ) {
-                throw new Exception("putain de merde, va te faire foutre driver de merde");
-            }
-
-
             Context xmlContext = (Context) ctx.lookup("java:comp/env");
             DataSource ds = (DataSource) xmlContext.lookup("jdbc/connection");
-
-
-
-
-
             conn = ds.getConnection();
+
+
             //conn = DriverManager.getConnection("jdbc:postgresql://localhost/exemple", props);
         } catch ( NamingException e) {
             e.printStackTrace();
