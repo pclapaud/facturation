@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+import javax.naming.*;
+import javax.sql.*;
 
 public class ListeClients extends HttpServlet {
     Connection conn;
@@ -60,7 +62,7 @@ public class ListeClients extends HttpServlet {
             String prenom = httpServletRequest.getParameter("prenom");
             String loc = httpServletRequest.getParameter("loc");
             String pays = httpServletRequest.getParameter("pays");
-            String reqe = "INSERT INTO clients VALUES ('"+numString+"','"+name+"', '"+prenom+"', '"+pays+"',' "+loc+"',0,'particulier')";
+            String reqe = "INSERT INTO clients VALUES ('"+numString+"','"+name+"', '"+prenom+"', '"+pays+"',' "+loc+"',null,null)";
             req.executeUpdate(reqe);
 
             httpServletResponse.sendRedirect("/clients.html");
@@ -71,22 +73,38 @@ public class ListeClients extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         try {
-            String user = getInitParameter("user");
-            String password = getInitParameter("password");
-            String driver = getInitParameter("driver");
+//            String user = getInitParameter("user");
+//            String password = getInitParameter("password");
+//            String driver = getInitParameter("driver");
 
-            Class.forName("org.postgresql.Driver");
-            Properties props = new Properties();
-            props.setProperty("user", user);
-            props.setProperty("password", password);
-            conn = DriverManager.getConnection(driver, props);
+//            Class.forName("org.postgresql.Driver");
+//            Properties props = new Properties();
+//            props.setProperty("user", user);
+//            props.setProperty("password", password);
+//            conn = DriverManager.getConnection(driver, props);
+            Context ctx = new InitialContext();
+            if(ctx == null ) {
+                throw new Exception("Boom - No Context");
+            }
+
+            // /jdbc/postgres is the name of the resource above
+            Context xmlContext = (Context) ctx.lookup("java:comp/env");
+            DataSource ds = (DataSource) xmlContext.lookup("jdbc/connection");
+
+
+
+
+
+            conn = ds.getConnection();
             //conn = DriverManager.getConnection("jdbc:postgresql://localhost/exemple", props);
-        } catch (ClassNotFoundException e) {
+        } catch ( NamingException e) {
             e.printStackTrace();
             throw new ServletException("Pas de Driver SQL");
         } catch (SQLException e) {
             e.printStackTrace();
             throw new ServletException("Pas de connexion à la base");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

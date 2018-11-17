@@ -19,11 +19,12 @@
             <td> <label for="prenom"></label> <input id="prenom" name="prenom" type = text value="${client.pnom}"> </td>
             <td> <label for="loc"></label> <input id="loc" name="loc" type = text value="${client.loc}"> </td>
             <td> <label for="pays"></label> <input id="pays"name="pays" type = text value="${client.pays}"> </td>
+            <td><INPUT value="modifier"type="submit"></td>
         </tr>
 
 
 
-<INPUT type="submit">
+
 </table>
 </form>
 
