@@ -84,10 +84,10 @@ public class ListeClients extends HttpServlet {
 //            conn = DriverManager.getConnection(driver, props);
             Context ctx = new InitialContext();
             if(ctx == null ) {
-                throw new Exception("Boom - No Context");
+                throw new Exception("putain de merde, va te faire foutre driver de merde");
             }
 
-            // /jdbc/postgres is the name of the resource above
+
             Context xmlContext = (Context) ctx.lookup("java:comp/env");
             DataSource ds = (DataSource) xmlContext.lookup("jdbc/connection");
 
