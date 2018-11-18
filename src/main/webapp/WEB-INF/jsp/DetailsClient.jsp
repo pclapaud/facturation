@@ -21,7 +21,7 @@
             <td> <label for="pays"></label> <input maxlength="2" id="pays"name="pays" type = text value="${client.pays}"> </td>
             <td> <input name="button" value="mod" type="radio"></td>
             <td> <input name="button" value="sup" type="radio"></td>
-            <td><INPUT value="modifier"type="submit"></td>
+            <td><input type="submit"></td>
         </tr>
 
 
