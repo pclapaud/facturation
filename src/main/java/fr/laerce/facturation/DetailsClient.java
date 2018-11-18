@@ -47,18 +47,16 @@ public class DetailsClient extends HttpServlet {
             String prenom = httpServletRequest.getParameter("prenom");
             String loc = httpServletRequest.getParameter("loc");
             String pays = httpServletRequest.getParameter("pays");
-            String mod = httpServletRequest.getParameter("mod");
+            String mod = httpServletRequest.getParameter("button");
             ArrayList<Client> clients = (ArrayList<Client>)session.getAttribute("clients");
             Client original = (Client)session.getAttribute("original");
-            if(mod!=null) {
-                for (Client cl : clients
-                ) {
-                    if (cl.getNom().equals(name)) {
+            if(mod.equals("mod")) {
+
                         String reqe = "UPDATE clients SET clt_nom='" + name + "', clt_pnom='" + prenom + "', clt_loc='" + loc + "', clt_pays='" + pays +
                                 "' where clt_nom='" + original.getNom() + "'and clt_pnom='" + original.getPnom() + "'and clt_loc='" + original.getLoc() + "'and clt_pays='" + original.getPays() + "'";
                         req.executeUpdate(reqe);
-                    }
-                }
+
+
             }
             else {
                 String reqe = "DELETE FROM clients where clt_nom='" + original.getNom() + "'and clt_pnom='" + original.getPnom() + "'and clt_loc='" + original.getLoc() + "'and clt_pays='" + original.getPays() + "'";

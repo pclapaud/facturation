@@ -19,8 +19,8 @@
             <td> <label for="prenom"></label> <input maxlength="20" id="prenom" name="prenom" type = text value="${client.pnom}"> </td>
             <td> <label for="loc"></label> <input maxlength="20" id="loc" name="loc" type = text value="${client.loc}"> </td>
             <td> <label for="pays"></label> <input maxlength="2" id="pays"name="pays" type = text value="${client.pays}"> </td>
-            <td><label for="mod"></label> <input checked name="mod" id="mod" type="radio"></td>
-            <td><label for="sup"></label> <input name="sup" id="sup" type="radio"></td>
+            <td> <input name="button" value="mod" type="radio"></td>
+            <td> <input name="button" value="sup" type="radio"></td>
             <td><INPUT value="modifier"type="submit"></td>
         </tr>
 
