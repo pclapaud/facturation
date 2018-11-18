@@ -11,6 +11,7 @@ Question 2:
 Question 3:
 -modifier un utilisateur
 -ajouter un utilisateur
+-supprimer un utilisateur
 
 Question 4:
 -initialiser la connexion au niveau de l'application:
