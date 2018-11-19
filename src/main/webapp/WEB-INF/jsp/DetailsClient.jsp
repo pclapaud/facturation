@@ -19,7 +19,7 @@
             <td> <label for="prenom"></label> <input maxlength="20" id="prenom" name="prenom" type = text value="${client.pnom}"> </td>
             <td> <label for="loc"></label> <input maxlength="20" id="loc" name="loc" type = text value="${client.loc}"> </td>
             <td> <label for="pays"></label> <input maxlength="2" id="pays"name="pays" type = text value="${client.pays}"> </td>
-            <td> <input name="button" value="mod" type="radio"></td>
+            <td> <input checked name="button" value="mod" type="radio"></td>
             <td> <input name="button" value="sup" type="radio"></td>
             <td><input type="submit"></td>
         </tr>

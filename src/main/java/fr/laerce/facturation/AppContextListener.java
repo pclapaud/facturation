@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 
 import java.sql.*;
-
+import java.util.Properties;
 
 
 @WebListener
@@ -24,16 +24,22 @@ public class AppContextListener implements ServletContextListener {
 
         Context ctx = null;
         try {
-            ctx = new InitialContext();
-            Context xmlContext = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) xmlContext.lookup("jdbc/connection");
-            conn = ds.getConnection();
+            String user = servletContextEvent.getServletContext().getInitParameter("user");
+            String password = servletContextEvent.getServletContext().getInitParameter("password");
+            String driver = servletContextEvent.getServletContext().getInitParameter("driver");
+
+            Class.forName("org.postgresql.Driver");
+            Properties props = new Properties();
+            props.setProperty("user", user);
+            props.setProperty("password", password);
+            conn = DriverManager.getConnection(driver, props);
+
             servletContextEvent.getServletContext().setAttribute("conn",conn);
 
 
-        } catch (NamingException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 

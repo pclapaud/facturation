@@ -3,13 +3,10 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
     <display-name>Exemple d'Application Web</display-name>
 
-    <listener>
-        <listener-class>
-            fr.laerce.facturation.AppContextListener
-        </listener-class>
-    </listener>
+
     <context-param>
         <param-name>driver</param-name>
         <param-value>jdbc:postgresql://192.168.99.100/exemple</param-value>
@@ -22,6 +19,11 @@
         <param-name>password</param-name>
         <param-value>secret</param-value>
     </context-param>
+    <listener>
+        <listener-class>
+            fr.laerce.facturation.AppContextListener
+        </listener-class>
+    </listener>
     <servlet>
         <servlet-name>ListeClients</servlet-name>
         <servlet-class>fr.laerce.facturation.ListeClients</servlet-class>
