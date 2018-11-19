@@ -16,7 +16,7 @@ import java.util.Properties;
 
 
 @WebListener
-public class AppContextListener implements ServletContextListener {
+public class AppContextListener implements ServletContextListener  {
     Connection conn;
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -34,12 +34,23 @@ public class AppContextListener implements ServletContextListener {
             props.setProperty("password", password);
             conn = DriverManager.getConnection(driver, props);
 
+
+
             servletContextEvent.getServletContext().setAttribute("conn",conn);
+            String reqe = "UPDATE clients SET clt_nom= ? , clt_pnom= ? , clt_loc= ? , clt_pays= ? where clt_nom= ? and clt_pnom= ?and clt_loc= ? and clt_pays= ? ";
+            PreparedStatement updt = conn.prepareStatement(reqe);
+            servletContextEvent.getServletContext().setAttribute("updt",updt);
+            String reqe2 = "DELETE FROM clients where clt_nom= ? and clt_pnom= ?and clt_loc= ? and clt_pays= ? ";
+            PreparedStatement dele = conn.prepareStatement(reqe2);
+            servletContextEvent.getServletContext().setAttribute("dele",dele);
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("pas de driver sql");
+            System.exit(4);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -52,6 +63,8 @@ public class AppContextListener implements ServletContextListener {
             e.printStackTrace();
         }
 
+
     }
+
 
 }

@@ -53,15 +53,27 @@ public class DetailsClient extends HttpServlet {
             Client original = (Client)session.getAttribute("original");
             if(mod.equals("mod")) {
 
-                        String reqe = "UPDATE clients SET clt_nom='" + name + "', clt_pnom='" + prenom + "', clt_loc='" + loc + "', clt_pays='" + pays +
-                                "' where clt_nom='" + original.getNom() + "'and clt_pnom='" + original.getPnom() + "'and clt_loc='" + original.getLoc() + "'and clt_pays='" + original.getPays() + "'";
-                        req.executeUpdate(reqe);
+                PreparedStatement updt = (PreparedStatement)getServletContext().getAttribute("updt");
+                updt.setString(1,name);
+                updt.setString(2,prenom);
+                updt.setString(3,loc);
+                updt.setString(4,pays);
+                updt.setString(5,original.getNom());
+                updt.setString(6,original.getPnom());
+                updt.setString(7,original.getLoc());
+                updt.setString(8,original.getPays());
+
+                updt.executeUpdate();
 
 
             }
             else {
-                String reqe = "DELETE FROM clients where clt_nom='" + original.getNom() + "'and clt_pnom='" + original.getPnom() + "'and clt_loc='" + original.getLoc() + "'and clt_pays='" + original.getPays() + "'";
-                req.executeUpdate(reqe);
+                PreparedStatement dele = (PreparedStatement)getServletContext().getAttribute("dele");
+                dele.setString(1,original.getNom());
+                dele.setString(2,original.getPnom());
+                dele.setString(3,original.getLoc());
+                dele.setString(4,original.getPays());
+                dele.executeUpdate();
             }
             httpServletResponse.sendRedirect("/clients.html");
         } catch (SQLException e) {

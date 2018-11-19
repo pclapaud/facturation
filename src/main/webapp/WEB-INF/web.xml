@@ -24,6 +24,7 @@
             fr.laerce.facturation.AppContextListener
         </listener-class>
     </listener>
+
     <servlet>
         <servlet-name>ListeClients</servlet-name>
         <servlet-class>fr.laerce.facturation.ListeClients</servlet-class>
