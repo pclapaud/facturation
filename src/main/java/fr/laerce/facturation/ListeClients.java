@@ -12,9 +12,22 @@ import java.sql.*;
 import java.util.*;
 import javax.naming.*;
 import javax.sql.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.sql.*;
+import java.util.*;
 
 public class ListeClients extends HttpServlet {
     Connection conn;
+
 
 
     @Override
@@ -22,7 +35,7 @@ public class ListeClients extends HttpServlet {
 
 
         try {
-
+            conn = (Connection)getServletContext().getAttribute("conn");
             Statement req = conn.createStatement();
             String query = "SELECT clt_num, clt_nom, clt_pnom, clt_loc, clt_pays FROM clients";
             ResultSet res = req.executeQuery(query);
@@ -50,6 +63,7 @@ public class ListeClients extends HttpServlet {
         HttpSession session = httpServletRequest.getSession();
         try {
             String numString = null;
+            conn = (Connection)getServletContext().getAttribute("conn");
             Statement req = conn.createStatement();
             String query = "SELECT MAX(clt_num)FROM clients";
             ResultSet res = req.executeQuery(query);
@@ -69,35 +83,8 @@ public class ListeClients extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }}
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        try {
-//            String user = getInitParameter("user");
-//            String password = getInitParameter("password");
-//            String driver = getInitParameter("driver");
-
-//            Class.forName("org.postgresql.Driver");
-//            Properties props = new Properties();
-//            props.setProperty("user", user);
-//            props.setProperty("password", password);
-//            conn = DriverManager.getConnection(driver, props);
-            Context ctx = new InitialContext();
-            Context xmlContext = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) xmlContext.lookup("jdbc/connection");
-            conn = ds.getConnection();
 
 
-            //conn = DriverManager.getConnection("jdbc:postgresql://localhost/exemple", props);
-        } catch ( NamingException e) {
-            e.printStackTrace();
-            throw new ServletException("Pas de Driver SQL");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException("Pas de connexion à la base");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
-}
+

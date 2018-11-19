@@ -5,38 +5,32 @@
 <web-app>
     <display-name>Exemple d'Application Web</display-name>
 
-
+    <listener>
+        <listener-class>
+            fr.laerce.facturation.AppContextListener
+        </listener-class>
+    </listener>
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>jdbc:postgresql://192.168.99.100/exemple</param-value>
+    </context-param>
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>postgres</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>secret</param-value>
+    </context-param>
     <servlet>
         <servlet-name>ListeClients</servlet-name>
         <servlet-class>fr.laerce.facturation.ListeClients</servlet-class>
-        <!--<init-param>-->
-            <!--<param-name>driver</param-name>-->
-            <!--<param-value>jdbc:postgresql://192.168.99.100/exemple</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>user</param-name>-->
-            <!--<param-value>postgres</param-value>-->
-     <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>password</param-name>-->
-            <!--<param-value>secret</param-value>-->
-        <!--</init-param>-->
+
     </servlet>
     <servlet>
         <servlet-name>DetailsClient</servlet-name>
         <servlet-class>fr.laerce.facturation.DetailsClient</servlet-class>
-        <!--<init-param>-->
-            <!--<param-name>driver</param-name>-->
-            <!--<param-value>jdbc:postgresql://192.168.99.100/exemple</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>user</param-name>-->
-            <!--<param-value>postgres</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>password</param-name>-->
-            <!--<param-value>secret</param-value>-->
-        <!--</init-param>-->
+
 
     </servlet>
 

@@ -42,6 +42,7 @@ public class DetailsClient extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         HttpSession session = httpServletRequest.getSession();
         try {
+            conn = (Connection)getServletContext().getAttribute("conn");
             Statement req = conn.createStatement();
             String name = httpServletRequest.getParameter("nom");
             String prenom = httpServletRequest.getParameter("prenom");
@@ -72,36 +73,7 @@ public class DetailsClient extends HttpServlet {
 
 
     }
-    public void init() throws ServletException {
-        super.init();
-        try {
-//            String user = getInitParameter("user");
-//            String password = getInitParameter("password");
-//            String driver = getInitParameter("driver");
 
-//            Class.forName("org.postgresql.Driver");
-//            Properties props = new Properties();
-//            props.setProperty("user", user);
-//            props.setProperty("password", password);
-//            conn = DriverManager.getConnection(driver, props);
-            Context ctx = new InitialContext();
-            Context xmlContext = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) xmlContext.lookup("jdbc/connection");
-            conn = ds.getConnection();
-
-
-            //conn = DriverManager.getConnection("jdbc:postgresql://localhost/exemple", props);
-        } catch ( NamingException e) {
-            e.printStackTrace();
-            throw new ServletException("Pas de Driver SQL");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException("Pas de connexion à la base");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     }
 
