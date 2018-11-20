@@ -14,12 +14,7 @@ Question 3:
 -supprimer un utilisateur
 
 Question 4:
--initialiser la connexion au niveau de l'application:
-vous devez en plus modifier votre context.xml dans votre dossier tomcat/conf et ajouter dans les balises context la ressource suivante:
+-initialiser la connexion au niveau de l'application(avec un listener):
 
-
-    <Resource name="jdbc/connection" auth="Container" type="javax.sql.DataSource"
-              maxTotal="25" maxIdle="5" maxWaitMillis="5000"
-              username="postgres" password="secret" driverClassName="org.postgresql.Driver"
-              url="jdbc:postgresql://192.168.99.100/exemple"/>
-
+Question 5:
+-gere la connection/deconnection avec la BDD(avec des filtres)
