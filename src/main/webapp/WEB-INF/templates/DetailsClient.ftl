@@ -1,6 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Les films</title>
@@ -11,8 +8,8 @@
 <hr width="100%" />
 
 <form method="post" action="/DetailsClient">
-<table border="1" >
-    <tr><th>Nom</th><th>Prénom</th><th>Ville</th><th>Pays</th><th>modifier</th><th>supprimer</th></tr>
+    <table border="1" >
+        <tr><th>Nom</th><th>Prénom</th><th>Ville</th><th>Pays</th><th>modifier</th><th>supprimer</th></tr>
 
         <tr>
             <td> <label for="nom"></label> <input maxlength="25" id="nom" name="nom" type = text value="${client.nom}"> </td>
@@ -27,7 +24,7 @@
 
 
 
-</table>
+    </table>
 </form>
 
 </body>

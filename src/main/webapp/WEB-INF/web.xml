@@ -43,24 +43,12 @@
     <servlet>
         <servlet-name>ListeClients</servlet-name>
         <servlet-class>fr.laerce.facturation.ListeClients</servlet-class>
+    </servlet>
 
-    </servlet>
-    <servlet>
-        <servlet-name>DetailsClient</servlet-name>
-        <servlet-class>fr.laerce.facturation.DetailsClient</servlet-class>
-    </servlet>
 
     <servlet-mapping>
         <servlet-name>ListeClients</servlet-name>
-        <url-pattern>/clients.html</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DetailsClient</servlet-name>
-        <url-pattern>/DetailsClient</url-pattern>
-    </servlet-mapping>
-
-
-
-
 
 </web-app>
